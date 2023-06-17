@@ -1,5 +1,5 @@
 
-function main() {
+
     const wordsArr = ["pierwszy","drugi","trzeci", "domek", "autostrada", 
     "prestidigitator","coraz","wiecej","nowych",'wyrazów','czacha','dymi','mózg','paruje','szuflandia'];
 
@@ -9,8 +9,4 @@ function main() {
             return acc;
         },[]);
     };
-    console.log(findPhraseInArray(wordsArr,'u'))
-
-}
-
-export default main
+    console.log(findPhraseInArray(wordsArr,'i'))
