@@ -1,6 +1,7 @@
 /* eslint-disable no-restricted-syntax */
 
 const tabIn = [1,2,3,4,5,6,7,8,9];
+const tabInText = ["Ala", "ma","kota"];
 
 //forEach
 console.log('forEach Simulation');
@@ -95,14 +96,17 @@ console.log(filterFn(tabIn,filterSim));
 //const entriesFn = (array) => {};
 console.log('entries Simulation');
 console.log( 'Tabela wejsciowa/wyjsciowa:');
-console.log(tabIn);
+console.log(tabInText);
 
 const entriesFn = (array) => {
     const tabOutEntries = [];
-    for (const [index, element] of array)
-    tabOutEntries.push([index, element]);
+    array.forEach((element, index) =>
+    tabOutEntries.push([index,element]));
+    return tabOutEntries;
 };
-console.log(entriesFn(tabIn));
+
+
+console.log(entriesFn(tabInText));
 
 // let seqn = tabIn.entries();
 // console.log("Applying the Array entries method:");
