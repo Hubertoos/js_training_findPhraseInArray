@@ -3,7 +3,7 @@ const tabIn = [1,2,3,4,5,6,7,8,9];
 const tabInText = ["Ala", "ma","kota"];
 
 
-
+//function maprFn(array, callback) {}
 function mapFn(array, callback) {
     console.log(callback(array));
 }
@@ -11,7 +11,6 @@ function mapFn(array, callback) {
 mapFn (tabIn, array => {
     let tabOut = [];
     array.reduce((prvVal, currVal) => {
-        console.log(currVal);
         tabOut.push(currVal+1);
     },[]);
     return tabOut;
@@ -27,13 +26,13 @@ function filterFn(array, callback) {
 filterFn (tabIn, array => {
     let tabOut = [];
     array.reduce((prvVal, currVal) => {
-        console.log(currVal);
         if (currVal%2==0) {    
         tabOut.push(currVal);
         }
     },[]);
     return tabOut;
 })
+
 
 
 //function everyFn(array, callback) {}
@@ -46,9 +45,6 @@ function everyFn(array, callback) {
 everyFn (tabIn, array => {
     let isEvery = true;
     array.reduce((prvVal, currVal) => {
-        // if (currVal%2==0) {    
-        // isEvery = false;
-        // }
         if (prvVal<=0 || currVal<=0) {    
             isEvery = false;
             }
