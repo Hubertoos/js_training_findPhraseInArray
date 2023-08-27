@@ -1,37 +1,65 @@
 /* eslint-disable no-restricted-syntax */
 
-const tabIn = [1,2,3,4,5,6,7,8,9];
+//const tabIn = [1,2,3,4,5,6,7,8,9];
 const tabInText = ["Ala", "ma","kota"];
+const lineItems = [
+    { description: 'Eggs (Dozen)', quantity: 1, price: 3, total: 3 },
+    { description: 'Cheese', quantity: 0.5, price: 5, total: 2.5 },
+    { description: 'Butter', quantity: 2, price: 6, total: 12 }
+  ];
 
 //forEach
 console.log('forEach Simulation');
-const forEachFn = (array, callback) => {
-    console.log(callback(array));
+
+const tabIn = [1,2,3,4,5,6,7,8,9];
+function forEachFn (array, callback) {
+    for (const el of array) {callback(el)};
 };
 
-forEachFn(tabIn, (tab) => {
-    let suma=0;
-    for (const elem of tab) {suma += elem}
-    return suma;
-})
+
+forEachFn(tabIn, (i) => {
+    //console.log('ddd');
+    return tabIn[i-1];
+});
+
+
+console.log('Test1');
+forEachFn(lineItems, (el) => {
+    console.log(el.description);
+});
+
+
+lineItems.forEach((el) => console.log(el.description));
+
+
 
 //map
 console.log('map Simulation');
-const mapFn = (array, callback) => {
-    return callback(array);
+function mapFn (array, callback) {
+    const newTab = [];
+    for (const el of array) {newTab.push(callback(el))};
+    return newTab;
 };
+console.log('test mapa');
+const testMap = mapFn(tabIn, (el) => el+10);
+console.log(testMap);
 
-const mapSim = (tab) => {
-    const tabOut = [];
-    // for (let i=0; i<tab.length; i++) {
-    //     tabOut.push(tab[i]+10);
-    // }
-    for (const element of tab) {tabOut.push(element+10)}
-    return tabOut;
-}
 
-console.log(mapFn(tabIn,mapSim));
-console.log(tabIn);
+// const mapFn = (array, callback) => {
+//     return callback(array);
+// };
+
+// const mapSim = (tab) => {
+//     const tabOut = [];
+//     // for (let i=0; i<tab.length; i++) {
+//     //     tabOut.push(tab[i]+10);
+//     // }
+//     for (const element of tab) {tabOut.push(element+10)}
+//     return tabOut;
+// }
+
+// console.log(mapFn(tabIn,mapSim));
+// console.log(tabIn);
 
 //map alter version
 console.log('mapAlter Simulation');
