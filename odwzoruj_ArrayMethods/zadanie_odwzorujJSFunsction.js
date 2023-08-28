@@ -16,18 +16,15 @@ function forEachFn (array, callback) {
     for (const el of array) {callback(el)};
 };
 
-
 forEachFn(tabIn, (i) => {
     //console.log('ddd');
     return tabIn[i-1];
 });
 
-
 console.log('Test1');
 forEachFn(lineItems, (el) => {
     console.log(el.description);
 });
-
 
 lineItems.forEach((el) => console.log(el.description));
 
@@ -45,81 +42,22 @@ const testMap = mapFn(tabIn, (el) => el+10);
 console.log(testMap);
 
 
-// const mapFn = (array, callback) => {
-//     return callback(array);
-// };
-
-// const mapSim = (tab) => {
-//     const tabOut = [];
-//     // for (let i=0; i<tab.length; i++) {
-//     //     tabOut.push(tab[i]+10);
-//     // }
-//     for (const element of tab) {tabOut.push(element+10)}
-//     return tabOut;
-// }
-
-// console.log(mapFn(tabIn,mapSim));
-// console.log(tabIn);
-
-//map alter version
-console.log('mapAlter Simulation');
-console.log( 'Tabela wejsciowa/wyjsciowa:');
-console.log(tabIn);
-const mapFnAlt = (array, callback) => {
-    console.log(callback(array));
-};
-
-mapFnAlt (tabIn, tab => {
-    const tabOut = [];
-    // for (let i=0; i<tab.length; i++) {
-    //     tabOut.push(tab[i]+10);
-    // }
-    for (const element of tab) {tabOut.push(element+10)}
-    return tabOut;
-})
-
-
 //filter
 console.log('filter Simulation');
 console.log( 'Tabela wejsciowa/wyjsciowa:');
 console.log(tabIn);
 const filterFn = (array, callback) => {
-    return callback(array);
-};
-
-const filterSim = (tab) => {
-    const tabOutFiltered = [];
-    for (const element of tab) {
-        if (element%2==0) {
-        tabOutFiltered.push(element);
+    const newTabOut = [];
+    for (const el of array){
+        if (callback(el)===true){
+            newTabOut.push(el);
         }
     }
-    
-    return tabOutFiltered;
-}
-
-console.log(filterFn(tabIn,filterSim));
-
-//filter alter version
-console.log('filter alter Simulation');
-console.log( 'Tabela wejsciowa/wyjsciowa:');
-console.log(tabIn);
-
-const filterFnAlt = (array, callback) => {
-    return callback(array);
+    return newTabOut;
 };
 
-filterFnAlt (tabIn, tab => {
-    const tabOutFiltered = [];
-    for (const element of tab) {
-        if (element%2==0) {
-        tabOutFiltered.push(element);
-        }
-    }
-    return tabOutFiltered;
-})
+console.log(filterFn(tabIn, e => e>5));
 
-console.log(filterFn(tabIn,filterSim));
 
 //const entriesFn = (array) => {};
 console.log('entries Simulation');
@@ -128,20 +66,15 @@ console.log(tabInText);
 
 const entriesFn = (array) => {
     const tabOutEntries = [];
-    array.forEach((element, index) =>
-    tabOutEntries.push([index,element]));
+    let idx=0;
+    for (const el of array){
+        tabOutEntries.push([idx,el]);
+        idx +=1;
+    }
     return tabOutEntries;
 };
 
-
 console.log(entriesFn(tabInText));
-
-// let seqn = tabIn.entries();
-// console.log("Applying the Array entries method:");
-
-// for (let x of seqn) {
-// 	console.log(x);
-// };
 
 
 
@@ -152,17 +85,14 @@ console.log( 'Tabela wejsciowa/wyjsciowa:');
 console.log(tabIn);
 
 const reduceFn = (array, callback, inital) => {
-    return callback(array, inital);
+    let calcualtion = inital;
+    for (const el of array){
+        calcualtion +=callback(el);
+    }
+    return calcualtion;
 };
 
-const reduceFnSim =  (tab, initialValue) => {
-    let sum = initialValue;
-    for (const val of tab) {
-        sum += val;
-    }
-    return sum;
-};
-console.log(reduceFn(tabIn,reduceFnSim,0));
+console.log(reduceFn(tabIn,((a) => a),5));
 
 //const everyFn = (array, callback) => {};
 console.log('every Simulation');
@@ -170,34 +100,37 @@ console.log( 'Tabela wejsciowa/wyjsciowa:');
 console.log(tabIn);
 
 const everyFn = (array, callback) => {
-    console.log(callback(array));
+    let isEvery=true;
+    for (const el of array){
+        if(callback(el)===false){
+            isEvery=false;
+            break;
+        }};
+        return isEvery;
 };
 
-everyFn (tabIn, tab => {
-    let isTrue = true;
-    for (const val of tab) {
-        if (val<4 || val>9) {
-            isTrue = false
-        };
-    }
-    return isTrue;
-});
+const evryWynik = everyFn(tabIn, (i) => i>0);
+const evryWynikEvery = tabIn.every( e => e>0);
+console.log(evryWynik);
+console.log(evryWynikEvery);
+
+
 
 //const someFn = (array, callback) => {};
+
 
 console.log('some Simulation');
 console.log( 'Tabela wejsciowa/wyjsciowa:');
 console.log(tabIn);
 
 const someFn = (array, callback) => {
-    console.log(callback(array));
+    let isAny=false;
+    for (const el of array){
+        if(callback(el)===true){
+            isAny=true;
+            break;
+        }};
+        return isAny;
 };
 
-someFn (tabIn, tab => {
-    for (const val of tab) {
-        if (val>0 && val<10) {
-            return true;
-        };
-    }
-    return false;
-});
+console.log(someFn (tabIn, e => e==9));
