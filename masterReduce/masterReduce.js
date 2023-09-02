@@ -16,60 +16,83 @@ mapFn (tabIn, array => {
     return tabOut;
 })
 
-
-
-
-//function filterFn(array, callback) {}
-function filterFn(array, callback) {
-    console.log("Filter simulation")
-    console.log(callback(array));
+function mapFnNew(array, callback) {
+    const tabOut = [];
+    array.reduce((acc,nval) => tabOut.push(callback(nval)),[]);
+    return tabOut;
 }
 
-filterFn (tabIn, array => {
-    let tabOut = [];
+
+
+console.log('Nowa wersja map-a');
+console.log(mapFnNew(tabIn, a => a+1));
+console.log(mapFnNew(tabInText, a => a+'ma'+a));
+
+
+
+
+// //function filterFn(array, callback) {}
+// function filterFn(array, callback) {
+//     console.log("Filter simulation")
+//     console.log(callback(array));
+// }
+
+function filterFnNew(array, callback) {
+    const tabOut = [];
     array.reduce((prvVal, currVal) => {
-        if (currVal%2==0) {    
-        tabOut.push(currVal);
+        if(callback(currVal)){
+           tabOut.push(currVal);
         }
     },[]);
     return tabOut;
-})
+}
 
+
+// filterFn (tabIn, array => {
+//     let tabOut = [];
+//     array.reduce((prvVal, currVal) => {
+//         if (currVal%2==0) {    
+//         tabOut.push(currVal);
+//         }
+//     },[]);
+//     return tabOut;
+// })
+
+console.log("Filter orginal simulation")
+console.log(tabIn.filter(a => a>4));
+console.log("Filter new simulation")
+console.log(filterFnNew(tabInText, a => a.includes('k')));
 
 
 //function everyFn(array, callback) {}
 
 function everyFn(array, callback) {
-    console.log("Every simulation");
-    console.log(callback(array));
-}
-
-everyFn (tabIn, array => {
     let isEvery = true;
-    array.reduce((prvVal, currVal) => {
-        if (prvVal<=0 || currVal<=0) {    
-            isEvery = false;
-            }
-    });
+    array.reduce((acc, nval) => {
+        if(!callback(nval)){
+            isEvery=false;
+        }
+    },true);
     return isEvery;
-})
+}
+console.log('Every normal & simulation');
+console.log(tabIn.every(a => a>0));
+console.log(everyFn(tabIn, el => el>0));
 /*
 function someFn(array, callback) {}
 */
 function someFn(array, callback) {
-    console.log("Some simulation");
-    console.log(callback(array));
-}
-
-someFn (tabInText, array => {
     let isAny = false;
-    array.reduce((prvVal, currVal) => {
-        if (prvVal== "Kota" || currVal=="Kota") {    
-            isAny = true;
-            }
-    });
+    array.reduce((acc, nval) => {
+        if(callback(nval)){
+            isAny=true;
+        }
+    },false);
     return isAny;
-})
+}
+console.log('Some normal & simulation');
+console.log(tabInText.some(a => a.includes('f')));
+console.log(someFn (tabInText, any => any.includes('f')));
 
 const lineItems = [
     { description: 'Eggs (Dozen)', quantity: 1, price: 3, total: 3 },
@@ -102,6 +125,7 @@ const lineItems = [
   const wynik4 = tabIn.reduce(funcReducer, []);
 
  // console.log(wynik3);
+ console.log('wynik4')
   console.log(wynik4);
 
   let wynikMap = lineItems.map(item => item.description);
