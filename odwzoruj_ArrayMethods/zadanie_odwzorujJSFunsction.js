@@ -84,15 +84,22 @@ console.log('reduce Simulation');
 console.log( 'Tabela wejsciowa/wyjsciowa:');
 console.log(tabIn);
 
-
-
 const reduceFn = (array, callback, inital) => {
     let acc = inital;
-    for (const nextVal of array){
-        acc =+callback(acc, nextVal, array);
+    for (let idx=0;idx<array.length; idx++){
+        acc =+callback(acc, array[idx],idx, array);
     }
     return acc;
 };
+
+
+// const reduceFn = (array, callback, inital) => {
+//     let acc = inital;
+//     for (const nextVal of array){
+//         acc =+callback(acc, nextVal, array);
+//     }
+//     return acc;
+// };
 
 console.log('Standard reduce: ');
 console.log(tabIn.reduce((acc, nextval) => acc+nextval,1));
