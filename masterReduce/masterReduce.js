@@ -4,14 +4,20 @@ const tabInText = ["Ala", "ma","kota"];
 
 
 //function maprFn(array, callback) {}
-
+// const result = tabIn.reduce((acc, value) => {
+//     acc.push(value);
+//     return acc;
+// }, []);
+// console.log(result); // undefined
 
 function mapFn(array, callback) {
     const tabOut = [];
-    array.reduce((acc,nval) => tabOut.push(callback(nval)),[]);
+    const a = array.reduce((acc,nval) => tabOut.push(callback(nval)), []); // TODO: tutaj wrzucić return
     return tabOut;
 }
 
+// TOOD: odwzorować dokładnie te argumenty dla callback'a
+// tabIn.map((value, index, array) => {})
 
 
 console.log('Nowa wersja map-a');

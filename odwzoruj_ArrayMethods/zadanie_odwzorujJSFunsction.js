@@ -92,7 +92,6 @@ const reduceFn = (array, callback, inital) => {
     return acc;
 };
 
-
 // const reduceFn = (array, callback, inital) => {
 //     let acc = inital;
 //     for (const nextVal of array){
