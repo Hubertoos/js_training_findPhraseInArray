@@ -53,3 +53,13 @@ const lineItems = [
 // //     console.log('ddd');
 
 // // });
+
+var store = [0, 1, 2, 3, 4];
+
+var stored = store.reduce(function(pV, cV, cI){
+  console.log("pv: ", pV);
+  pV.push(cV+1);
+  return pV; // *********  Important ******
+}, []);
+
+console.log(stored);
